@@ -84,13 +84,3 @@ Every game mutation will return enough state for the frontend to render the boar
 - The active game ID will be stored by the frontend so a refresh can request the current backend state.
 - The computer opponent is rule-based rather than minimax-based.
 
-## AI-assisted development notes
-
-The implementation plan was derived from the supplied technical assignment. AI-generated code will be reviewed against the backend state-ownership requirement, especially move validation, terminal-state handling, mode-aware undo, and one-time scoreboard updates. The final version will record prompts, manual changes, assumptions, and trade-offs here.
-
-## Future improvements
-
-- SQLite persistence
-- Multiple concurrent games and user accounts
-- Stronger computer strategy
-- API schema generation and richer integration tests
