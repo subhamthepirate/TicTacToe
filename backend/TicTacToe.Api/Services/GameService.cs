@@ -74,6 +74,12 @@ namespace TicTacToe.Api.Services
                 {
                     game.OWins++;
                 }
+                // Get the winning positions
+                List<Position> winningPositions;
+                if (TryGetWinningPositions(game.Board, out winningPositions))
+                {
+                    game.WinningPositions = winningPositions;
+                }
 
                 return GetGameStateResponse(game);
             }
@@ -82,7 +88,7 @@ namespace TicTacToe.Api.Services
             {
                 game.State = GameState.Draw;
                 game.Draws++;
-                
+
                 return GetGameStateResponse(game);
             }
             else
@@ -116,6 +122,12 @@ namespace TicTacToe.Api.Services
                         {
                             game.State = GameState.PlayerOWon;
                             game.OWins++;
+                            // Get the winning positions
+                            List<Position> winningPositions;
+                            if (TryGetWinningPositions(game.Board, out winningPositions))
+                            {
+                                game.WinningPositions = winningPositions;
+                            }
                         }
                         // Check for draw after computer move
                         else if (IsBoardFull(game.Board))
@@ -264,57 +276,19 @@ namespace TicTacToe.Api.Services
 
         private bool CheckWin(GameSession game, int lastRow, int lastColumn)
         {
-            var player = game.Board[lastRow, lastColumn];
-            game.WinningPositions.Clear();
-
+            char player = game.Board[lastRow, lastColumn];
             // Check row
             if (CheckLine(game.Board, (lastRow, 0), (lastRow, 1), (lastRow, 2), player))
-            {
-                game.WinningPositions = new List<Position>
-                {
-                    new Position(lastRow, 0),
-                    new Position(lastRow, 1),
-                    new Position(lastRow, 2)
-                };
                 return true;
-            }
-
             // Check column
             if (CheckLine(game.Board, (0, lastColumn), (1, lastColumn), (2, lastColumn), player))
-            {
-                game.WinningPositions = new List<Position>
-                {
-                    new Position(0, lastColumn),
-                    new Position(1, lastColumn),
-                    new Position(2, lastColumn)
-                };
                 return true;
-            }
-
-            // Check main diagonal
+            // Check diagonal (top-left to bottom-right)
             if (lastRow == lastColumn && CheckLine(game.Board, (0, 0), (1, 1), (2, 2), player))
-            {
-                game.WinningPositions = new List<Position>
-                {
-                    new Position(0, 0),
-                    new Position(1, 1),
-                    new Position(2, 2)
-                };
                 return true;
-            }
-
-            // Check anti-diagonal
+            // Check anti-diagonal (top-right to bottom-left)
             if (lastRow + lastColumn == 2 && CheckLine(game.Board, (0, 2), (1, 1), (2, 0), player))
-            {
-                game.WinningPositions = new List<Position>
-                {
-                    new Position(0, 2),
-                    new Position(1, 1),
-                    new Position(2, 0)
-                };
                 return true;
-            }
-
             return false;
         }
 
