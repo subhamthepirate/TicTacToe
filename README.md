@@ -57,17 +57,16 @@ The frontend will call the local .NET API through REST endpoints. The API develo
 
 ## API contract
 
-The planned routes are:
+The implemented routes are:
 
 | Method | Endpoint | Purpose |
 | --- | --- | --- |
 | POST | `/api/games` | Create a game session |
 | GET | `/api/games/{id}` | Retrieve current game state |
-| POST | `/api/games/{id}/moves` | Submit a player move |
+| POST | `/api/games/{id}/move` | Submit a player move |
 | POST | `/api/games/{id}/undo` | Undo the latest move or turn pair |
 | POST | `/api/games/{id}/reset` | Reset the current game |
-| GET | `/api/scoreboard` | Retrieve the session scoreboard |
-| POST | `/api/scoreboard/reset` | Reset the scoreboard |
+| POST | `/api/games/{id}/reset-scoreboard` | Reset the scoreboard |
 
 Every game mutation will return enough state for the frontend to render the board, current player, mode, status, winner, winning cells, move history, and scoreboard.
 

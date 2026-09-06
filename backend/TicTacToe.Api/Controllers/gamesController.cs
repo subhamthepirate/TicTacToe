@@ -6,16 +6,16 @@ using TicTacToe.Api.Services;
 
 [ApiController]
 [Route("api/[controller]")]
-public class GameController : ControllerBase
+public class gamesController : ControllerBase
 {
     private readonly IGameService _gameService;
 
-    public GameController(IGameService gameService)
+    public gamesController(IGameService gameService)
     {
         _gameService = gameService;
     }
 
-    [HttpPost("new")]
+    [HttpPost]
     public ActionResult<GameResponse> CreateNewGame([FromQuery] GameMode? mode = null)
     {
         var game = _gameService.CreateNewGame(mode ?? GameMode.TwoPlayer);
