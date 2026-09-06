@@ -16,9 +16,9 @@ public class GameController : ControllerBase
     }
 
     [HttpPost("new")]
-    public ActionResult<GameResponse> CreateNewGame()
+    public ActionResult<GameResponse> CreateNewGame([FromQuery] GameMode? mode = null)
     {
-        var game = _gameService.CreateNewGame();
+        var game = _gameService.CreateNewGame(mode ?? GameMode.TwoPlayer);
         var response = _gameService.GetGameState(game.Id);
         return Ok(response);
     }

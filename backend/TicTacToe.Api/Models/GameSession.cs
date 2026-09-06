@@ -6,16 +6,18 @@ public class GameSession
     public char[,] Board { get; set; } = new char[3, 3];
     public char CurrentPlayer { get; set; } = 'X';
     public GameState State { get; set; } = GameState.InProgress;
+    public GameMode GameMode { get; set; } = GameMode.TwoPlayer;
     public List<Move> MoveHistory { get; set; } = new();
     public List<Position> WinningPositions { get; set; } = new();
-    
+
     // Scoreboard
     public int XWins { get; set; } = 0;
     public int OWins { get; set; } = 0;
     public int Draws { get; set; } = 0;
 
-    public GameSession()
+    public GameSession(GameMode mode = GameMode.TwoPlayer)
     {
+        GameMode = mode;
         InitializeBoard();
     }
 

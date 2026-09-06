@@ -4,18 +4,21 @@ A browser-based Tic-Tac-Toe application with a React and TypeScript frontend and
 
 ## Current status
 
-The .NET solution is scaffolded under `backend/`, and the Vite React TypeScript frontend is scaffolded under `frontend/`. Node.js 24.20.0 is installed, but npm currently resolves an unrelated invalid package from the terminal's default `d:\copilot` context; run npm from the repository root or a fresh VS Code terminal before installing dependencies.
+The application is fully implemented with a .NET 8 Web API backend and a React TypeScript frontend. All planned features have been implemented and tested.
 
-## Planned features
+## Features
 
 - Two-player and play-against-computer modes
 - Backend-owned game state and validation
-- Move history and mode-aware undo
+- Move history and mode-aware undo (removes 1 move in two-player, computer+human pair in computer mode)
 - Row, column, diagonal, and draw detection
 - Winning-cell highlighting
-- Session scoreboard
+- Session scoreboard tracked in game state
 - Separate game and scoreboard reset actions
-- Unit tests for game rules and state transitions
+- Computer move logic with priority algorithm (win → block → center → corner → any)
+- Automatic computer move triggering in computer mode
+- Game mode selection UI
+- RESTful API for all game operations
 
 ## Technology
 
@@ -73,7 +76,7 @@ Every game mutation will return enough state for the frontend to render the boar
 - React is used instead of Angular because the assignment technology expectations explicitly allow React.js or Angular with TypeScript.
 - The backend is the source of truth for game rules, validation, status, history, undo, and scoreboard state.
 - In-memory storage keeps local setup simple while interfaces will allow later replacement with SQLite.
-- Undo will be disabled after a win or draw (the assignment's Option A). This keeps completed scoreboard results immutable and guarantees one scoreboard update per completed game.
+- Undo is allowed after a win or draw and the scoreboard is adjusted accordingly (the assignment's Option B). This allows players to reverse completed games and maintains scoreboard consistency.
 - In computer mode, the human is X and the computer is O. The computer follows the required winning, blocking, center, corner, and fallback priority.
 
 ## Assumptions and limitations

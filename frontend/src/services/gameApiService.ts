@@ -1,10 +1,10 @@
-import { GameResponse, MakeMoveRequest } from "./types";
+import { GameResponse, MakeMoveRequest, GameMode } from "../types";
 
 const API_BASE_URL = "http://localhost:5118/api/game";
 
 class GameApiService {
-  async createNewGame(): Promise<GameResponse> {
-    const response = await fetch(`${API_BASE_URL}/new`, {
+  async createNewGame(gameMode: GameMode = GameMode.TwoPlayer): Promise<GameResponse> {
+    const response = await fetch(`${API_BASE_URL}/new?mode=${gameMode}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

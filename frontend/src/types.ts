@@ -6,6 +6,11 @@ export enum GameState {
   Draw = "Draw",
 }
 
+export enum GameMode {
+  TwoPlayer = "TwoPlayer",
+  Computer = "Computer"
+}
+
 export interface Move {
   moveNumber: number;
   player: string;
@@ -24,6 +29,7 @@ export interface GameResponse {
   board: string[][];
   currentPlayer: string;
   state: GameState;
+  gameMode: GameMode;
   moveHistory: Move[];
   winningPositions: Position[];
   xWins: number;

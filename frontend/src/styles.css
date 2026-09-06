@@ -223,6 +223,44 @@ h2, h3 {
   background: #f7fafc;
 }
 
+.mode-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9ff;
+  border-radius: 10px;
+  border: 1px solid #e0e6ff;
+}
+
+.mode-selector label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #444;
+  gap: 8px;
+}
+
+.mode-selector input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #667eea;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+}
+
+.mode-selector input[type="radio"]:checked {
+  border-color: #667eea;
+  background-color: #667eea;
+}
+
+.mode-selector input[type="radio"]:hover {
+  border-color: #5568d3;
+}
+
 @media (max-width: 768px) {
   .game-container {
     grid-template-columns: 1fr;

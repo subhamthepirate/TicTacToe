@@ -7,19 +7,20 @@ import { MoveHistory } from './components/MoveHistory'
 import { Scoreboard } from './components/Scoreboard'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import gameApiService from './services/gameApiService'
-import { GameResponse, GameState } from './types'
+import { GameResponse, GameState, GameMode } from './types'
 
 function App() {
   const [gameData, setGameData] = useState<GameResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [gameMode, setGameMode] = useState<GameMode>(GameMode.TwoPlayer)
 
   // Initialize game on component mount
   useEffect(() => {
     const initializeGame = async () => {
       try {
         setLoading(true)
-        const response = await gameApiService.createNewGame()
+        const response = await gameApiService.createNewGame(gameMode)
         setGameData(response)
         setError(null)
       } catch (err) {
@@ -31,7 +32,7 @@ function App() {
     }
 
     initializeGame()
-  }, [])
+  }, [gameMode]) // Re-initialize game when mode changes
 
   const handleCellClick = async (row: number, column: number) => {
     if (!gameData) return
@@ -120,9 +121,11 @@ function App() {
           <GameStatus
             currentPlayer={gameData.currentPlayer}
             gameState={gameData.state}
+            gameMode={gameMode}
             onResetGame={handleResetGame}
             onResetScoreboard={handleResetScoreboard}
             onUndoMove={handleUndoMove}
+            onGameModeChange={setGameMode}
             canUndo={gameData.moveHistory.length > 0}
           />
 

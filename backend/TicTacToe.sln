@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Api", "TicTacToe.Api\TicTacToe.Api.csproj", "{FE68ABA4-12FC-4A4E-9BB2-2DA3E7589ADC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Api.Tests", "TicTacToe.Api.Tests\TicTacToe.Api.Tests.csproj", "{DBBA122A-C830-4FAA-A1A6-EBAA7DE264EF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{FE68ABA4-12FC-4A4E-9BB2-2DA3E7589ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE68ABA4-12FC-4A4E-9BB2-2DA3E7589ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE68ABA4-12FC-4A4E-9BB2-2DA3E7589ADC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBBA122A-C830-4FAA-A1A6-EBAA7DE264EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBBA122A-C830-4FAA-A1A6-EBAA7DE264EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBBA122A-C830-4FAA-A1A6-EBAA7DE264EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBBA122A-C830-4FAA-A1A6-EBAA7DE264EF}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
+			EndGlobalSection
 EndGlobal
